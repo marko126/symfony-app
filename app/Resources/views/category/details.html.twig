@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}View {{category.name}}{% endblock%}
+
+{% block body %}
+    <a href="/categories" class="btn btn-default">Back to Categories</a>
+    <h2 class="page-header">{{category.name}}</h2> 
+{% endblock %}
