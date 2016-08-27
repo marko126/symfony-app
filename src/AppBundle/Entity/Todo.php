@@ -52,6 +52,7 @@ class Todo
 
     /**
      * @var \DateTime
+     * @Assert\DateTime
      * @Assert\Range(
      *      min = "now",
      *      minMessage = "You must enter some date in the future!"
@@ -62,7 +63,6 @@ class Todo
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="create_date", type="datetime")
      */
     private $createDate;
