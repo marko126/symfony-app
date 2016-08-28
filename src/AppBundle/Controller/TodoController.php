@@ -48,8 +48,24 @@ class TodoController extends Controller
                             ), 
                             'label' => 'Naziv'
                         ))
-                -> add('category', TextType::class, array('attr' => array('class'=> 'form-control', 'style' => 'margin-bottom:15px')))
-                -> add('description', TextareaType::class, array('attr' => array('class'=> 'form-control', 'style' => 'margin-bottom:15px')))
+                -> add(
+                        'category', 
+                        TextType::class, 
+                        array(
+                            'attr' => array(
+                                'class'=> 'form-control', 
+                                'style' => 'margin-bottom:15px'
+                            )
+                        ))
+                -> add(
+                        'description', 
+                        TextareaType::class, 
+                        array(
+                            'attr' => array(
+                                'class'=> 'form-control', 
+                                'style' => 'margin-bottom:15px'
+                            )
+                        ))
                 -> add(
                         'priority', 
                         ChoiceType::class, 
