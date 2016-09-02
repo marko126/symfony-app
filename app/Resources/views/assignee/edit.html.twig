@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{assignee.firstName}} {{assignee.lastName}}{% endblock%}
+
+{% block body %}
+    <h2 class="page-header">Edit Assignee</h2>
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{form_end(form)}}
+{% endblock %}

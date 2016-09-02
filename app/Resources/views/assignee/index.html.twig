@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="/assignee/create" class="btn btn-success">Create Assignee</a>
+    <h2 class="page-header">Assignees</h2>
+    <table class="table table-striped"> 
+        <thead> 
+            <tr> 
+                <th>#</th> 
+                <th>First Name</th> 
+                <th>Last Name</th>
+                <th>Email</th>
+                <th></th> 
+            </tr> 
+        </thead> 
+        <tbody> 
+            {% for assignee in assignees %}
+            <tr> 
+                <th scope="row">{{loop.index}}</th>
+                <td>{{assignee.firstName}}</td> 
+                <td>{{assignee.lastName}}</td> 
+                <td>{{assignee.email}}</td>
+                <td>
+                    <a href="/assignee/details/{{assignee.id}}" class="btn btn-success">View</a>
+                    <a href="/assignee/edit/{{assignee.id}}" class="btn btn-default">Edit</a>
+                    <a href="/assignee/delete/{{assignee.id}}" class="btn btn-danger">Delete</a>
+                </td> 
+            </tr>
+            {% endfor %}
+        </tbody> 
+    </table>
+
+{% endblock %}

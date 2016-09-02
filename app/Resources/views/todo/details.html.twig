@@ -6,7 +6,8 @@
     <a href="/" class="btn btn-default">Back to Todos</a>
     <h2 class="page-header">{{todo.name}}</h2>
     <ul class="list-group">
-        <li class="list-group-item">Category: {{todo.category}}</li>
+        <li class="list-group-item">Category: {{todo.category.name}}</li>
+        <li class="list-group-item">Assignee: {{todo.assignee.firstName}} {{todo.assignee.lastName}}</li>
         <li class="list-group-item">Priority: {{todo.priority}}</li>
         <li class="list-group-item">Due: {{todo.dueDate|date('F j, Y, g:i a')}}</li>
     </ul>

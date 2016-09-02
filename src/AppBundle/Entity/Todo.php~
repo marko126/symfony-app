@@ -31,7 +31,7 @@ class Todo
 
     /**
      * @var string
-     * @Assert\NotBlank(message="Category cannot be blank")
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="todos")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
@@ -39,6 +39,7 @@ class Todo
     
     /**
      * @var string
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Assignee", inversedBy="todos")
      * @ORM\JoinColumn(name="assignee_id", referencedColumnName="id")
      */
@@ -228,29 +229,5 @@ class Todo
     public function getCreateDate()
     {
         return $this->createDate;
-    }
-
-    /**
-     * Set assignee
-     *
-     * @param \AppBundle\Entity\Assignee $assignee
-     *
-     * @return Todo
-     */
-    public function setAssignee(\AppBundle\Entity\Assignee $assignee = null)
-    {
-        $this->assignee = $assignee;
-
-        return $this;
-    }
-
-    /**
-     * Get assignee
-     *
-     * @return \AppBundle\Entity\Assignee
-     */
-    public function getAssignee()
-    {
-        return $this->assignee;
     }
 }
