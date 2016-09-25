@@ -29,6 +29,7 @@ class TodoController extends Controller
                 ->findAll();
         // Test
         $a = 1;
+        $b = 2;
         return $this->render('todo/index.html.twig', array(
             'todos' => $todos
         ));
