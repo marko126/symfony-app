@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Form\TodoType;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -41,65 +42,7 @@ class TodoController extends Controller
     {
         $todo = new Todo;
         
-        $form = $this->createFormBuilder($todo)
-                -> add(
-                        'name', 
-                        TextType::class, 
-                        array(
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            ), 
-                            'label' => 'Naziv'
-                        ))
-                -> add(
-                        'category', 
-                        EntityType::class, 
-                        array(
-                            'class' => 'AppBundle:Category',
-                            /*'query_builder' => function (EntityRepository $er) {
-                                return $er->createQueryBuilder('n')
-                                    ->orderBy('n.name', 'ASC');
-                            },*/
-                            'choice_label' => 'name',
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add(
-                        'description', 
-                        TextareaType::class, 
-                        array(
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add(
-                        'priority', 
-                        ChoiceType::class, 
-                        array(
-                            'choices' => array(
-                                'String' => [
-                                    'Low' => 'Low', 
-                                    'Normal' => 'Normal', 
-                                    'High' => 'High'
-                                ],
-                                'Number' => [
-                                    '1' => '1',
-                                    '2' => '2',
-                                    '3' => '3'
-                                ]
-                            ), 
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add('due_date', DateTimeType::class, array('attr' => array('class'=> 'formcontrol', 'style' => 'margin-bottom:15px')))
-                -> add('save', SubmitType::class, array('label' => 'Create Todo', 'attr' => array('class'=> 'btn btn-primary', 'style' => 'margin-bottom:15px')))
-                -> getForm();
+        $form = $this->createForm(TodoType::class, $todo);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -157,35 +100,7 @@ class TodoController extends Controller
         $todo->setDueDate($todo->getDueDate());
         $todo->setCreateDate($now);
             
-        $form = $this->createFormBuilder($todo)
-                -> add('name', TextType::class, array('attr' => array('class'=> 'form-control', 'style' => 'margin-bottom:15px')))
-                -> add(
-                        'category', 
-                        EntityType::class, 
-                        array(
-                            'class' => 'AppBundle:Category',
-                            'choice_label' => 'name',
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add(
-                        'assignee', 
-                        EntityType::class, 
-                        array(
-                            'class' => 'AppBundle:Assignee',
-                            'choice_label' => 'firstName',
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add('description', TextareaType::class, array('attr' => array('class'=> 'form-control', 'style' => 'margin-bottom:15px')))
-                -> add('priority', ChoiceType::class, array('choices' => array('Low' => 'Low', 'Normal' => 'Normal', 'High' => 'High'), 'attr' => array('class'=> 'form-control', 'style' => 'margin-bottom:15px')))
-                -> add('due_date', DateTimeType::class, array('attr' => array('class'=> 'formcontrol', 'style' => 'margin-bottom:15px')))
-                -> add('save', SubmitType::class, array('label' => 'Update Todo', 'attr' => array('class'=> 'btn btn-primary', 'style' => 'margin-bottom:15px')))
-                -> getForm();
+        $form = $this->createForm(TodoType::class, $todo);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -296,61 +211,8 @@ class TodoController extends Controller
                 ->getRepository('AppBundle:Assignee')
                 ->find($id);
         
-        $form = $this->createFormBuilder($todo)
-                -> add(
-                        'name', 
-                        TextType::class, 
-                        array(
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            ), 
-                            'label' => 'Name'
-                        ))
-                -> add(
-                        'category', 
-                        EntityType::class, 
-                        array(
-                            'class' => 'AppBundle:Category',
-                            'choice_label' => 'name',
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add(
-                        'description', 
-                        TextareaType::class, 
-                        array(
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add(
-                        'priority', 
-                        ChoiceType::class, 
-                        array(
-                            'choices' => array(
-                                'String' => [
-                                    'Low' => 'Low', 
-                                    'Normal' => 'Normal', 
-                                    'High' => 'High'
-                                ],
-                                'Number' => [
-                                    '1' => '1',
-                                    '2' => '2',
-                                    '3' => '3'
-                                ]
-                            ), 
-                            'attr' => array(
-                                'class'=> 'form-control', 
-                                'style' => 'margin-bottom:15px'
-                            )
-                        ))
-                -> add('due_date', DateTimeType::class, array('attr' => array('class'=> 'formcontrol', 'style' => 'margin-bottom:15px')))
-                -> add('save', SubmitType::class, array('label' => 'Create Todo', 'attr' => array('class'=> 'btn btn-primary', 'style' => 'margin-bottom:15px')))
-                -> getForm();
+        $form = $this->createForm(TodoType::class, $todo);
+        $form->remove('assignee');
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
